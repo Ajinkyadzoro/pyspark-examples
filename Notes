@@ -1,3 +1,9 @@
-Arguments specified in application code will take precedance over spark submit.
+1) Arguments specified in application code will take precedance over spark submit.
 
-Arguments specified in spark submit will take precedance over spark-defaults.conf
+2) Arguments specified in spark submit will take precedance over spark-defaults.conf
+
+3) number of jobs is ideally equal to the number of actions.
+   each job will have stages - number of shuffle boundaries
+   each stage will have tasks - number of partitions
+
+ 
