@@ -1,0 +1,3 @@
+Arguments specified in application code will take precedance over spark submit.
+
+Arguments specified in spark submit will take precedance over spark-defaults.conf
