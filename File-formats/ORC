@@ -1,1 +1,7 @@
+1) Most suitable for Hive/Presto
 
+2) Provides better compression than Parquet and Avro
+
+3) Predicate pushdown is possible
+
+4) Columnar format file, so faster reads and slower writes
