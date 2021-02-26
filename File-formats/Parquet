@@ -1,1 +1,7 @@
+1) Parquet is better at handling nested data than ORC.
 
+2) Parquet is preferable for Spark.
+
+3) It is a columnar format, so provides better reads
+
+4) Better compression and it infers schema by itself
