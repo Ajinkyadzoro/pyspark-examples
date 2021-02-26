@@ -1,0 +1,8 @@
+Avro file formats
+
+1) It is a row based file format
+2) Good for writing the data (faster reads) but nt ideal for reading (slower reads)
+3) Stores the metadata in JSON file format
+4) Original data is stored in binary format
+5) Good support for schema evolution (renaming columns and adding new columns)
+6) Words well with all the languages (Java,C,C++,Python) quite the generic one.
