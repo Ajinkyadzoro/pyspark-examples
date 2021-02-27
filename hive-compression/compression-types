@@ -1,0 +1,39 @@
+1) There are 4 types of compression in Hive
+
+A] Snappy
+B] LZO
+C] gzip
+D] bzip2
+
+===============
+Snappy
+===============
+
+1) Less compression but more speed
+2) Balanced technique
+3) Not splittable
+
+===============
+LZO
+===============
+
+1) It is splittable
+2) Same as Snappy but little bit slower
+
+===============
+gzip
+===============
+
+1) Good for compression
+2) 2.5 times better compression than snappy
+3) Not splittable
+
+
+===============
+bzip2
+===============
+
+1) Optimized for storage and very slow 
+2) bzip2 provides excellent compression but very slow for processing
+3) 9% more better compression than gzip
+
