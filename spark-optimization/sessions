@@ -40,3 +40,41 @@ Drawbacks
 1. It is observed that if the executor holds more than 5 cpu cores then the hdfs throughputsuffers.
 2. if the executor holds very huge amount of memory, then the garbage collection takes a lot of time.
 garbage collection means removing unused objects from memory.
+
+
+
+Spark Optimization Session - 3
+=============================== 
+10 Nodes
+16 cores
+64 GB Ram
+
+
+1. Tiny executors 
+2. Fat executors
+
+
+16 cores , 64 GB Ram
+
+
+1 core is given for other background activities
+
+1 gb RAM is given for operating system in each node we are now left with 15 cores, 63 GB Ram
+
+=> we want multithreading within a executor (> 1 cpu core per executor) 
+=> we do not want our hdfs throughput to suffer (it suffers when we use more that 5 cores per executor) 
+5 is the right choice of number of cpu cores in each executor.
+15 cores, 63 GB Ram - each machine
+we can have 3 executors running on each worker node
+each executor will contain 5 cpu cores and 21 GB Ram.
+out of this 21 GB RAM some of it will go as part of overhead (off heap memory)
+max (384MB , 7% of executor memory) = 1.5 GB (overhead / off heap memory) - this is not part of containers.
+21 - 1.5 = ~19 GB
+that mean in each worker node we have 3 executors.
+each executor holds - 5 cpu cores, 19 GB RAM 
+we have a 10 node cluster/ worker nodes10 * 3 = 30 (executors across the cluster)
+30 executors with each executor holding -5 cpu cores, 19 GB RAM3
+1 executor out of these 30 will be given for YARN Application Manager
+30 - 1 = 29 executors...
+
+
