@@ -1,0 +1,42 @@
+Spark Optimization Session - 1
+=============================== 
+
+Spark Performance Optimizations / Tuning Spark Jobs
+There are basically 2 main areas we should focus on..
+1. cluster configuration level - resource level optimization 
+2. Application code level - how we write the code.
+Partitioning, bucketing, cache & persist, avoid/minimize shuffling of data, join optimizations,using optimized file formats, using reduceByKey instead of groupByKey 
+
+
+Spark Optimization Session - 2
+================================
+resources - memory (RAM) , CPU cores (Compute) 
+our intention is to make sure our job should get the right amount of resources.
+10 Node cluster (10 worker nodes)
+16 cpu cores
+64 GB RAM 
+Executor (it is like a container of resources)
+1 node can hold more than one executor
+in a single worker node we can have multiple executors (multiple containers) 
+container - cpu cores + memory (RAM) executor/container/JVM
+16 cores , 64 gb ram
+there are 2 strategies when creating containers.
+[1]. Thin executor - intention is to create more executors with each executor holding minimum possible resources. 
+total of 16 executors , with each executor holdingeach executor - 1 core, 4 gb ram
+
+Drawbacks 
+==========
+1. In this scenario we will be losing the benefits of multithreading. 
+2. A lot of copies of broadcast variable are required..
+each executor should receive its own copy.
+==========
+
+[2]. Fat executor - intention is to give maximum resources to each executor.
+16 cores, 64 gb ram
+you can create a executor which can hold 16 cpu cores and 64 gb ram.. 
+
+Drawbacks 
+==========
+1. It is observed that if the executor holds more than 5 cpu cores then the hdfs throughputsuffers.
+2. if the executor holds very huge amount of memory, then the garbage collection takes a lot of time.
+garbage collection means removing unused objects from memory.
